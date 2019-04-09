@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+	<title>Книги по категориям</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Content-Language" content="ru" />
+	<link rel="stylesheet" type="text/css" href="/labs/lab-2-2/lab-2-2.css" />
+	<script type="text/javascript" src="xmlhttprequest.js"></script>
+</head>
+
+<body>
+	<h1>Книги<br> по категориям</h1>
+	<form action="#" onsubmit="return false">
+		<div>
+			<label for="selCategory">Категория</label>
+			<select id="selCategory"></select>
+			<button id='ajload' onclick="showBooks()">Показать</button>
+		</div>
+
+		<div id="divBookInfo">
+
+		</div>
+		<button id='btest'>Test</button>
+	</form>
+
+
+
+	<table id="tableBooks">
+	</table>
+
+</body>
+<script type="text/javascript">
+	/*
+	**
+	** Задание 1. Код вставлять сюда
+	**
+	*/
+	window.onload = function () {
+		showCategory();
+		ajload = document.getElementById('ajload').click();
+	};
+
+	function clearList() {
+
+		let tableId = document.getElementById("tableBooks");
+		let divBook = document.getElementById("divBookInfo")
+
+		while (tableId.hasChildNodes())
+			tableId.removeChild(tableId.lastChild);
+		while (divBook.hasChildNodes())
+			divBook.removeChild(divBook.lastChild);
+	};
+
+	function addCategory(c, v) {
+		if (c && c.lenght == 0) return;
+		selCategory = document.getElementById('selCategory');
+		option = document.createElement("option");
+		selCategory.appendChild(option);
+		option.text = c;
+		option.value = v;
+	};
+
+	function showTableHead() {
+		let tableId = document.getElementById("tableBooks");
+		th = document.createElement("th");
+		th.innerHTML = "Автор";
+		tableId.appendChild(th);
+		th2 = document.createElement("th");
+		th2.innerHTML = "Название";
+		tableId.appendChild(th2);
+	};
+
+	function showCategory() {
+
+		var req = getXMLHttpRequest();
+
+		req.onreadystatechange = function () {
+			if (req.readyState != 4) return;
+			var responseText = req.responseText;
+			var category = responseText.split(/\n/);
+			category.splice(-1, 1)
+			for (let cat of category) {
+				catList = cat.split(':');
+				addCategory(catList[1], catList[0]);
+			}
+		};
+		req.open("GET", "/labs/lab-2-2/getcategories.php", false);
+		req.send(null);
+	};
+
+	/*
+	**
+	**	Задание 2. Выборка книг 
+	**
+	*/
+	function consoleLog(text) {
+		console.log(text);
+	}
+
+	function addElements(i, author, name, img) {
+
+		let tableId = document.getElementById("tableBooks"),
+			row = tableId.insertRow(0),
+			cell1 = row.insertCell(0),
+			cell2 = row.insertCell(1);
+		cell1.innerHTML = author;
+		cell2.innerHTML = name;
+		row.setAttribute("id", i);
+
+		row.onclick = function () {
+
+			// console.log(imgcr.id);
+			let tableimages = src.getElementsByTagName("img");
+			let el = document.getElementById(row.id);
+
+			for (let ti of tableimages) {
+				if (ti.classList.contains('active')) {
+					src.lastChild.classList.replace("active", "hidden")
+					console.log(ti.classList.contains('active'));
+					ti.classList.remove('active');
+					el.classList.add('active');
+				}
+			}
+		}
+
+		let imgcr = document.createElement("img");
+		imgcr.src = '/images/' + img;
+		let src = document.getElementById("divBookInfo");
+		src.appendChild(imgcr);
+		imgcr.setAttribute("id", i);
+		imgcr.classList.add("hidden");
+	};
+
+	function showBooks() {
+
+		// Формирование значения опции
+
+		var e = document.getElementById("selCategory");
+		var optionValue = "cat=" + e.options[e.selectedIndex].value;
+
+		// Запрос к серверу
+		var req = getXMLHttpRequest();
+
+		req.onreadystatechange = function () {
+			if (req.readyState != 4) return;
+
+			clearList();
+			showTableHead();
+			responseText = req.responseText,
+				table = responseText.split(/\n/);
+			table.splice(-1, 1)
+			table.reverse();
+			let i = 0;
+			for (let tr of table) {
+
+				tAr = tr.split('|');
+				author = tAr[0];
+				name = tAr[1];
+				img = tAr[2];
+
+				addElements(i, author, name, img)
+				i++;
+			};
+
+			let lastBookChild = document.getElementById("divBookInfo");
+			lastBookChild.lastChild.classList.replace("hidden", "active")
+		};
+
+		// Метод POST
+		req.open("POST", "/labs/lab-2-2/postbooksbycat.php", true);
+		// Установка заголовков
+		req.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+		// Отправка данных
+		req.send(optionValue);
+	};
+
+	/*
+	**
+	**	Задание 3. Показ изображений
+	**
+	*/
+
+	function showImages() {
+
+	}
+
+	(function (name) {
+		console.log(name)
+	}('test'));
+
+</script>
+
+</html>

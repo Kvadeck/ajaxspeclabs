@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<title>Синхронные и асинхронные запросы</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Language" content="ru" />
+	<link rel="stylesheet" type="text/css" href="styles.css" />
+	<script type="text/javascript" src="../xmlhttprequest.js"></script>
+	<script type="text/javascript">
+		// URL сценария, возвращающего время
+		var url = "gettime.php?delay=3";		// Задержка в запросе:  gettime.php?delay=3
+		var request;
+		var request = getXMLHttpRequest();
+
+		// Синхронный запрос
+		function showSyncRequest(){
+			// Запрос
+			request.open("GET", url, false);
+			request.send(null);
+			// Вывод ответа
+			let res = document.getElementById('syncResult');
+			res.firstChild.NodeValue = request.responseText;
+		}
+
+		// Асинхронный запрос
+		function showAsyncRequest(){
+			request.onreadystatechange = showAsyncRequestComplete;
+			// Запрос
+			request.open("GET", url, true);
+			request.send(null);
+		}
+
+		// Завершение асинхронного запроса
+		function showAsyncRequestComplete(){
+			if (request.readyState == 4) {
+				var res = document.getElementById('asyncResult');
+				res.firstChild.NodeValue = request.responseText;
+			}
+		}
+	</script>
+</head>
+<body>
+	<h1>Синхронные и асинхронные запросы</h1>
+	<div id="sync">
+		<h2>Синхронный запрос</h2>
+		<div id="syncResult" class="result">Здесь будет время</div>
+		<button onclick="showSyncRequest()">Пробуем!</button>
+	</div>
+	<div id="async">
+		<h2>Асинхронный запрос</h2>
+		<div id="asyncResult" class="result">Здесь будет время</div>
+		<button onclick="showAsyncRequest()">Пробуем!</button>
+	</div>
+</body>
+</html>
+

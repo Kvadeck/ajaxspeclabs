@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<title>Получение данных с сервера</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Language" content="ru" />
+	<script type="text/javascript" src="../xmlhttprequest.js"></script>
+	<script type="text/javascript">
+		var request = getXMLHttpRequest();
+		// Показ текста, полученного из файла
+		function getText(fileName){
+			request.onreadystatechange = function(){
+				if (request.readyState == 4) {
+					if (request.readyState !== 200) {
+						console.log(request.status);
+					} else {
+						console.log(request.ResponseText);
+					}
+				}
+				request.open('GET', fileName, true);
+				request.send(null);
+			}
+		}
+		
+		// Показ заголовков, полученных от сервера
+		function getInfo(fileName){
+			request.onreadystatechange = function() {
+				if (request.readyState == 4) {
+					alert(request.getAllResponseHeaders());
+					alert(request.getResponseHeader('Last-Modified'));
+				}
+			}
+		}		
+	</script>
+</head>
+<body>
+	<h1>Получение данных с сервера</h1>
+	<div id="sync">
+		<button onclick="getText('hello.txt')">Текст из файла</button>
+		<button onclick="getText('badFile.txt')">Файла нет</button>
+		<button onclick="getInfo('hello.txt')">Информация о файле</button>
+	</div>
+</body>
+</html>

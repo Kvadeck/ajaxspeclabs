@@ -1,0 +1,65 @@
+/*
+** Таблица стилей для примеров
+*/
+form
+{
+	width: 15em;
+	float: left;
+	padding-right: 1em;
+	border-right: 1px dotted gray;
+}
+
+form label
+{
+	display: block;
+}
+
+form select
+{
+	width: 100%;
+}
+
+form button
+{
+	display: block;
+	margin: auto;
+	margin-top: 1em;
+}
+
+#divBookInfo
+{
+	margin-top: 2em;
+	/* display: none; */
+}
+
+#tableBooks {
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	border-collapse: collapse;
+	width: 60%;
+  }
+  #tableBooks tr {
+	  cursor: pointer;
+  }
+  #tableBooks td, #tableBooks th {
+	border: 1px solid #ddd;
+	padding: 8px;
+	width: 30%;
+  }
+  
+  #tableBooks tr:nth-child(even){background-color: #f2f2f2;}
+  
+  #tableBooks tr:hover {background-color: #ddd;}
+  
+  #tableBooks th {
+	padding-top: 12px;
+	padding-bottom: 12px;
+	text-align: left;
+	background-color: #4CAF50;
+	color: white;
+  }
+  .hidden {
+	  display: none;
+  }
+  .active {
+	display: block;
+  }

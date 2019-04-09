@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<title>Книги по категориям</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Language" content="ru" />
+	<link rel="stylesheet" type="text/css" href="lab-2-1.css" />
+	<script type="text/javascript" src="xmlhttprequest.js"></script>
+</head>
+<body>
+	<h1>Книги по категориям</h1>
+	<form action="#" onsubmit="return false">
+		<div>
+			<label for="selCategory">Категория</label>
+			<select id="selCategory">
+			</select>
+			<button onclick="alert('А это следующая лабораторная работа')">Показать</button>
+		</div>
+	</form>
+</body>
+<script type="text/javascript">
+
+    function addCategory(text) {
+            if (text.length == 0) return;
+            selCategory = document.getElementById('selCategory');
+            option = document.createElement("option");
+            selCategory.appendChild(option);
+            option.text = text;
+        }
+
+   function showCategory() {
+            var req = getXMLHttpRequest();
+            req.open("GET", "getcategories.php", false);
+            req.send(null);
+            var responseText = req.responseText;
+            var category = responseText.split('\n');
+
+            for (let cat of category) {
+             categoryList = cat.split(':');
+             addCategory(categoryList[1]);
+            }
+        }
+
+    window.onload = function() {
+        showCategory();
+    }
+</script>
+
+</html>
+
