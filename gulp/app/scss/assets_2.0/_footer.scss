@@ -1,0 +1,80 @@
+/* ==== Footer ==== */
+.SPOFooter {
+    width: 100%;
+    height: 365px;
+    padding: 38px 0;
+    background-color: #1A2744;
+    color: #fff;
+}
+.SPOFooter h5 {
+    font-family: "Gilroy ExtraBold",sans-serif !important;
+    color: #fff;
+    font-size: 24px;
+    margin: 0 0 14px !important;
+    text-transform: uppercase;
+}
+
+.SPOFooter ul {
+    padding: 0;
+}
+
+.SPOFooter li {
+    display: block;
+    list-style: outside none none;
+    font-size: 18px;
+    line-height: 30px;
+}
+
+.SPOFooter li > a, .SPOFooter a {
+    color: #fff;
+}
+
+.spo-soc-wrapper {
+    display: flex;
+    -ms-align-items: center;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.spo-soc {
+    font-size: 36px;
+}
+
+.spo-mail {
+    margin-top: 10px;
+    color: #fff;
+    text-decoration: none;
+    display: block;
+}
+
+.spo-mail:hover, .spo-mail:focus, .spo-mail:active {
+    color: #fff;
+    text-decoration: underline;
+}
+
+.spo-soc {
+    color: #fff;
+    text-decoration: none;
+}
+
+.spo-soc:hover, .spo-soc:focus, .spo-soc:active {
+    color: #fff;
+    text-decoration: none;
+}
+
+.footer-logo-wrapper {
+    padding-top: 26px;
+    text-align: center;
+}
+
+.footer-logo-wrapper img {
+    width: 160px;
+}   
+
+/* .footer-logo-wrapper > * {
+    width: 160px;
+}
+
+.footer-logo-wrapper svg > g {
+    stroke: #fff;
+} */

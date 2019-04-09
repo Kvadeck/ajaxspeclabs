@@ -1,0 +1,57 @@
+.emp-wraper-absolute {
+  position: absolute;
+  width: 100%;
+}
+.emp-header-background{
+  background: black;
+}
+.emp-header {
+  position: relative;
+  background: url('/images/qr/header/1.jpg') no-repeat center center;
+  -webkit-background-size: cover;
+  background-size: cover;
+  opacity: 0.7;
+}
+.emp-header {
+  height: 69em;
+}
+.cards-background {
+  position: absolute;
+  top: -15em;
+  left: -6em;
+}
+.emp-header span {
+  padding: 0 0.5ch;
+}
+h1.emp-header-title {
+  width: 9rem;
+  font-family: "Montserrat", Arial, sans-serif;
+  font-size: 6.75rem;
+  font-weight: 800;
+  color:  #fff;
+  line-height: 0.9 !important;
+}
+h3.emp-header-title {
+  font-family: "Montserrat", Arial, sans-serif;
+  font-size: 5.75rem;
+  font-weight: 800;
+  color:  #fff;
+  line-height: 0.9 !important;
+}
+.emp-header-logo-wrapper {
+  height: 140px;
+  padding: 20px;
+}
+.emp-header-title-wrapper {
+  position: relative;
+  padding-top: 100px;
+}
+.emp-header-title-subwrapper {
+  position: relative;
+  height: 100%;
+  padding-top: 20px;
+  z-index: 1;
+}
+.emp-section {
+  padding:  10px 0;
+}

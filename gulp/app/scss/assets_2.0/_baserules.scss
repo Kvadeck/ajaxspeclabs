@@ -1,0 +1,40 @@
+@font-face {
+    font-family: "Gilroy Light";
+    src: url("/css/fonts/Gilroy/Gilroy-Light.otf") format("truetype");
+    font-style: normal;
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "Gilroy ExtraBold";
+    src: url("/css/fonts/Gilroy/Gilroy-ExtraBold.otf") format("truetype");
+    font-style: normal;
+    font-weight: 900;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    background-color: #1A2744;
+    margin: 0;
+    padding: 0;
+    font-family: "Gilroy Light", Arial, sans-serif;
+}
+
+.wrapper {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+}
+
+.top {
+    position: relative;
+    top: 0;
+    width: 100%;
+    height: 17px;
+    background: #2394aa url('/images/2.0/spo_strip.png') repeat-y;
+    z-index: 1;
+    background-size: cover
+}

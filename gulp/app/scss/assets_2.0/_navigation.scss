@@ -1,0 +1,32 @@
+/* ==== Main navigation ==== */
+
+.container__stripe-back {
+    position: absolute;
+    top: 0;
+    left: -177.5%;
+    height: 100%;
+    width: 200%;
+    background-color: #1A2744;
+    transform: skewX(-30deg);
+    z-index: 0;
+}
+.start-logo-wrapper {
+    padding-top: 30px;
+    text-align: left;
+    padding-bottom: 15px;
+}
+.start-nav_padding {
+    padding: 0;
+}
+.start-nav-li_properties {
+    display: block;
+    list-style: outside none none;
+    font-size: 18px;
+    line-height: 30px;
+}
+.start-nav-a_color {
+    color: #fff;
+}
+.start-nav-color_li_a a {
+    color: #fff;
+}

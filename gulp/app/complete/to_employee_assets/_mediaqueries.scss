@@ -1,0 +1,69 @@
+@media (min-width: 768px){
+  .d-md-block {
+    display: block!important;
+  }
+}
+@media (min-width: 768px){
+  .flex-md-row {
+    -ms-flex-direction: row!important;
+    flex-direction: row!important;
+  }
+}
+@media (min-width: 768px) {
+  .h-md-270 {
+    height: 270px;
+  }
+}
+@media (min-width: 768px) {
+  .h-md-540 {
+    height: 540px;
+  }
+}
+@media (min-width: 768px){
+  .p-md-5 {
+    padding: 3rem !important;
+  }
+}
+@media (min-width: 768px){
+  .display-4 {
+    font-family: "OpenSans Bold", Arial, sans-serif;
+    font-size: 4.5rem !important;
+    font-weight: bold;
+    padding-left: 150px;
+    width: 200px;
+    line-height: 1;
+  }
+}
+@media (max-width: 767px) {
+  .emp-header-logo-wrapper {
+    height: 0;
+  }
+}
+@media (max-width: 767px) {
+  .emp-header-title-wrapper {
+    padding-top: 0;
+  }
+}
+@media (max-width: 767px) {
+  .mt-5, .my-5 {
+    margin-top: 4.3rem!important;
+  }
+  .cards-background{
+    display: none;
+  }
+  h1.emp-header-title {
+    margin-left: 0 !important;
+    font-size: 3.5rem;
+    font-family: "Montserrat", Arial, sans-serif;
+    text-align: left;
+    color:  #fff;
+    width: 100%;
+  }
+  h3.emp-header-title {
+    font-size: 2.4rem;
+    font-family: "Montserrat", Arial, sans-serif;
+    text-align: left;
+    color:  #fff;
+    width: 100%;
+  }
+}
