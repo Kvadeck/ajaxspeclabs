@@ -11,7 +11,7 @@
 	
 		function $(el){
 		element = document.getElementById(el);
-		return element;
+			return element;
 		}
 
 		function log(el){
@@ -26,12 +26,11 @@
 		}
 		
 		// Класс Билет сессии
-		/*
+		
 			function Ticket() {
 				this.id = "";
 				this.valid = false;
 			}
-		*/
 	
 		/*
 		**
@@ -42,8 +41,20 @@
 		// Билет пользователя
 		var ticket;
 		
+		
+
 		// Функция проверки пользователя
-		function validateUser(){}
+		function validateUser(){
+			var login = $('txtLogin');
+			var password = $('txtPassword');
+
+			var record = new UserInfo(login.value, password.value);
+
+			var jsonData = JSON.stringify(record);
+
+			var req = getXMLHttpRequest();
+
+		}
 
 		// Функция гашения сообщения об ошибке
 		function hideErrorMessage() {}
@@ -68,13 +79,14 @@
 		<h2>Авторизация пользователя</h2>
 		<div>
 			<label for="txtLogin">Логин</label>
-			<input id="txtLogin" type="text" />
+			<input id="txtLogin" type="text" required/>
 		</div>
 		<div>
 			<label for="txtPassword">Пароль</label>
-			<input id="txtPassword" type="password" />
+			<input id="txtPassword" type="password" required/>
 		</div>
 		<button onclick="validateUser()">Вход</button>
+		<button onclick="closeLoginForm()">Закрыть</button>
 		<div id="divMessage" class="block">
 			<h2>Ошибка</h2>
 			<div>Неправильный логин или пароль!</div>
@@ -99,24 +111,30 @@
 </body>
 <script type="text/javascript">
 
-/*
+		/*
 		**
 		**	Задание 1. Отображение формы
 		**
 		*/
+		let body = document.body
+		forma = $('frmLogin');
+
 		function showLoginForm(){
-			let body = document.body
 			body.classList.add("has-overlay");
-			forma = $('frmLogin');
-			forma.classList.add("has-overlay");
 			forma.style.display = "block";
 		}
-		document.body.onclick = function(){
-			log('test');
-			let body = document.body
-			if (body.classList.contains('has-overlay')) 
-				body.classList.remove("has-overlay");
+		function closeLoginForm() {
+			body.classList.remove("has-overlay");
+			forma.style.display = "none";
 		}
+		document.onkeydown = function(evt) {
+    		evt = evt || window.event;
+			if (evt.keyCode === 27) {
+				body.classList.remove("has-overlay");
+				forma.style.display = "none";
+			}
+		};
+
 </script>
 </html>
 
