@@ -7,69 +7,6 @@
 	<link rel="stylesheet" type="text/css" href="lab-3.css" />
 	<script type="text/javascript" src="../xmlhttprequest.js"></script>
 	<script type="text/javascript" src="json2.js"></script>
-	<script type="text/javascript">
-	
-		function $(el){
-		element = document.getElementById(el);
-			return element;
-		}
-
-		function log(el){
-			console.log(el);
-		}
-
-		// Класс UserInfo
-		function UserInfo() {
-			this.name = "";
-			this.login = "";
-			this.password = "";
-		}
-		
-		// Класс Билет сессии
-		
-			function Ticket() {
-				this.id = "";
-				this.valid = false;
-			}
-	
-		/*
-		**
-		**	Задание 2. Проверка пользователя 
-		**
-		*/
-
-		// Билет пользователя
-		var ticket;
-		
-		
-
-		// Функция проверки пользователя
-		function validateUser(){
-			var login = $('txtLogin');
-			var password = $('txtPassword');
-
-			var record = new UserInfo(login.value, password.value);
-
-			var jsonData = JSON.stringify(record);
-
-			var req = getXMLHttpRequest();
-
-		}
-
-		// Функция гашения сообщения об ошибке
-		function hideErrorMessage() {}
-
-		
-		/*
-		**
-		**	Задание 3. Список пользователей
-		**
-		*/
-		
-		function showOnLineUsers() {}
-
-		
-	</script>
 </head>
 <body>
 	<h1>Пользователи на сайте</h1>
@@ -79,18 +16,18 @@
 		<h2>Авторизация пользователя</h2>
 		<div>
 			<label for="txtLogin">Логин</label>
-			<input id="txtLogin" type="text" required/>
+			<input id="txtLogin" type="text"/>
 		</div>
 		<div>
 			<label for="txtPassword">Пароль</label>
-			<input id="txtPassword" type="password" required/>
+			<input id="txtPassword" type="password"/>
 		</div>
 		<button onclick="validateUser()">Вход</button>
 		<button onclick="closeLoginForm()">Закрыть</button>
 		<div id="divMessage" class="block">
 			<h2>Ошибка</h2>
-			<div>Неправильный логин или пароль!</div>
-			<button onclick="hideErrorMessage()">Закрыть</button>
+			<div id="msgvalue"></div>
+			<button id="msgClose">Закрыть</button>
 		</div>
 	</form>
 	
@@ -116,6 +53,55 @@
 		**	Задание 1. Отображение формы
 		**
 		*/
+
+		function $(el){
+		element = document.getElementById(el);
+			return element;
+		}
+
+		function log(el){
+			console.log(el);
+		}
+
+		// Класс UserInfo
+		function UserInfo() {
+			this.name = "";
+			this.login = "";
+			this.password = "";
+		}
+
+		function UserAuth(login, password) {
+			this.login = login;
+			this.password = password;
+		}
+		
+		// Класс Билет сессии
+		
+		function Ticket() {
+				this.id = "";
+				this.valid = false;
+			}
+	
+		/*
+		**
+		**	Задание 2. Проверка пользователя 
+		**
+		*/
+
+		// Билет пользователя
+		var ticket;
+		
+		/*
+		**
+		**	Задание 3. Список пользователей
+		**
+		*/
+		
+		function showOnLineUsers() {}
+
+		var login = $('txtLogin');
+		var password = $('txtPassword');
+
 		let body = document.body
 		forma = $('frmLogin');
 
@@ -134,6 +120,55 @@
 				forma.style.display = "none";
 			}
 		};
+
+		function ErrorMessage() {
+			
+			var msgbutton = $('msgClose');
+			var msg = $('divMessage');
+			msg.style.display = 'block';
+
+			var msginner = $('msgvalue'); 
+			log(msginner.innerHTML);
+
+			if (login.value == "" || password.value == "")
+			{
+				msginner.innerHTML = 'Необходимо заполнить все поля...';
+			} else {
+				msginner.innerHTML = 'Неправильный логин или пароль!';
+			} 
+			
+			msgbutton.onclick = function() {
+				msg.style.display = "none";
+			}
+		}
+
+		function validateUser(){
+
+			var user = new UserAuth(login.value, password.value);
+
+			var jsonData = JSON.stringify(user);
+
+			var req = getXMLHttpRequest();
+
+			req.onreadystatechange = function()
+				{
+					if (req.readyState != 4) {
+						return;
+					}else {
+						var ticket = JSON.parse(req.responseText);
+						if (ticket.valid == false) {
+							ErrorMessage();
+						} else {
+							
+						}
+					}
+					
+				};
+			req.open("POST", "user_auth.php", true);
+			req.setRequestHeader("Content-Type", "text/plain");
+			req.send(jsonData);			
+		}
+		
 
 </script>
 </html>
