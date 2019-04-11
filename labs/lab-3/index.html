@@ -77,9 +77,9 @@
 		
 		// Класс Билет сессии
 		
-		function Ticket() {
-				this.id = "";
-				this.valid = false;
+		function Ticket(id,valid) {
+				this.id = id;
+				this.valid = valid;
 			}
 	
 		/*
@@ -89,21 +89,25 @@
 		*/
 
 		// Билет пользователя
-		var ticket;
+		
 		
 		/*
 		**
 		**	Задание 3. Список пользователей
 		**
 		*/
-		
-		function showOnLineUsers() {}
-
+		var ticket;
+		let body = document.body
+		var forma = $('frmLogin');
 		var login = $('txtLogin');
 		var password = $('txtPassword');
+		var users = $('divUsers');
+		var usersUl = users.querySelector('ul');
 
-		let body = document.body
-		forma = $('frmLogin');
+		function clearListUsers() {
+		while (usersUl.hasChildNodes())
+			usersUl.removeChild(usersUl.lastChild);
+		}
 
 		function showLoginForm(){
 			body.classList.add("has-overlay");
@@ -120,7 +124,11 @@
 				forma.style.display = "none";
 			}
 		};
-
+		function addUser(name){
+			var newLi = document.createElement('li');
+			newLi.innerHTML = name;
+			usersUl.appendChild(newLi);
+		}
 		function ErrorMessage() {
 			
 			var msgbutton = $('msgClose');
@@ -144,31 +152,58 @@
 
 		function validateUser(){
 
-			var user = new UserAuth(login.value, password.value);
-
-			var jsonData = JSON.stringify(user);
-
+			var userAuth = new UserAuth(login.value, password.value);
+			var jsonData = JSON.stringify(userAuth);
 			var req = getXMLHttpRequest();
 
 			req.onreadystatechange = function()
 				{
 					if (req.readyState != 4) {
 						return;
-					}else {
+					}else{
 						var ticket = JSON.parse(req.responseText);
 						if (ticket.valid == false) {
 							ErrorMessage();
 						} else {
-							
+							showOnLineUsers(ticket.id,ticket.valid);
 						}
 					}
-					
 				};
 			req.open("POST", "user_auth.php", true);
 			req.setRequestHeader("Content-Type", "text/plain");
 			req.send(jsonData);			
 		}
-		
+		function showOnLineUsers(id,valid) {
+			var user = new Ticket(id, valid);
+			var jsonuserData = JSON.stringify(user);
+			var request = getXMLHttpRequest();
+			request.onreadystatechange = function()
+				{
+					if (request.readyState != 4) {
+						return;
+					}else {
+						 // log(req.responseText);
+						 user = JSON.parse(request.responseText);
+						 var usArr = [];
+						 
+						for (let u of user){
+							usArr.push(u.name); 	
+							// addUser(u.name)
+						}
+						uniqueArray = usArr.filter(function(item, pos, self) {
+						return self.indexOf(item) == pos;
+						});
+						clearListUsers();
+						for (let uq of uniqueArray){
+							addUser(uq);
+						}
+						closeLoginForm();
+					}
+				};
+			request.open("POST", "get_online_users.php", true);
+			request.setRequestHeader("Content-Type", "text/plain");
+			request.send(jsonuserData);	
+		}
 
 </script>
 </html>
