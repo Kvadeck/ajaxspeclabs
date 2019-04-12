@@ -1,0 +1,87 @@
+
+https://developer.mozilla.org/ru/docs/Web/JavaScript/Closures
+
+<script>
+
+function makeAdder(x) {
+  return function(y) {
+    return x + y;
+  };
+};
+
+var add5 = makeAdder(5);
+var add10 = makeAdder(10);
+
+// console.log(add5(2));  // 7
+// console.log(add10(2)); // 12
+
+// function sum(x,y){
+//     return function(){
+//         return summa = x + y;
+//     }();
+// };
+
+// var sumE = sum(10,3);
+// console.log(sumE);
+
+// function makeFunc() {
+//   var name = "Mozilla";
+//   function displayName() {
+//     alert(name);
+//   }
+//   return displayName;
+// };
+
+// var myFunc = makeFunc();
+// myFunc();
+
+// function sum(x,y){
+//     return function (y){
+//         return summa = x + y;
+//     };
+// };
+
+// var sumE = sum(10,3);
+// console.log(sumE);
+
+// function makeAdder(x) {
+//   return function(y) {
+//     return x + y;
+//   };
+// };
+
+// var add5 = makeAdder(5);
+// var add10 = makeAdder(10);
+
+// console.log(add5(2));  // 7
+// console.log(add10(2)); // 12
+
+
+var Counter = (function() {
+  var privateCounter = 0;
+
+  function changeBy(val) {
+    privateCounter += val;
+  }
+
+  return {
+    increment: function() {
+      changeBy(1);
+    },
+    decrement: function() {
+      changeBy(-1);
+    },
+    value: function() {
+      return privateCounter;
+    }
+  };   
+})();
+
+alert(Counter.value()); /* Alerts 0 */
+Counter.increment();
+Counter.increment();
+alert(Counter.value()); /* Alerts 2 */
+Counter.decrement();
+alert(Counter.value()); /* Alerts 1 */
+
+</script>
