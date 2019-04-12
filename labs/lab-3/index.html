@@ -166,6 +166,11 @@
 							ErrorMessage();
 						} else {
 							showOnLineUsers(ticket.id,ticket.valid);
+							var timer = setTimeout(function tick() {
+								showOnLineUsers(ticket.id,ticket.valid);	
+							timer = setTimeout(tick, 5000);
+							}, 5000);
+							closeLoginForm();
 						}
 					}
 				};
@@ -197,7 +202,6 @@
 						for (let uq of uniqueArray){
 							addUser(uq);
 						}
-						closeLoginForm();
 					}
 				};
 			request.open("POST", "get_online_users.php", true);
