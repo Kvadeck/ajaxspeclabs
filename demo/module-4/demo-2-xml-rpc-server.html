@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta http-equiv="x-ua-compatible" content="IE=EmulateIE8">
   <meta http-equiv="Content-Language" content="ru" />
-	<script type="text/javascript" src="../xmlhttprequest.js"></script>
+	<script type="text/javascript" src="xmlhttprequest.js"></script>
 	<script type="text/javascript" src="xmlrpc.js"></script>
 	<script type="text/javascript">
 		function demoXMLRPC(){
@@ -16,7 +16,7 @@
 
 			// Запрос сервера
 			// Объект запроса
-			var req = getXMLHttpRequest();
+			var req = getXmlHttpRequest();
 			req.onreadystatechange = function(){
 					if (req.readyState != 4) return;
 					console.log(req.responseText);

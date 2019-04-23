@@ -25,7 +25,7 @@
 					var dom = req.responseXML;
 					console.log(dom);
 					var param = dom.getElementsByTagName("string")[0];
-					// /console.log(param.firstChild.nodeValue);
+					console.log(param.firstChild.nodeValue);
 				};
 			req.open("POST", "demo-2-xml-rpc-server.php", true);
 			req.setRequestHeader("Content-Type", "text/xml");

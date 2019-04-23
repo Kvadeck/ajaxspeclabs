@@ -6,7 +6,9 @@
 	
 	<!-- Корневой шаблон -->
 	<xsl:template match="/">
-		
+		<h2>
+			<xsl:value-of select="/methodResponse/params/param/value/string"/>
+		</h2>
 	</xsl:template>
 
 </xsl:stylesheet>
