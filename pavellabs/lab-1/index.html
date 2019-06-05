@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<title>Лабораторная работа 1</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Language" content="ru" />
+  <script type="text/javascript" src="getXHRequest.js"></script>
+	<!--
+		**
+		**	Задание 1. Создание объекта XmlHttpRequest
+		**		
+	-->
+	<script type="text/javascript">
+		const request = getXHRequest();
+
+		/*
+		**
+		**	Задание 2. Выборка книги 
+		**
+		*/
+
+		function showBook(e) {
+			const input = document.querySelector('#txtNum');
+			const data = input.value;
+
+			const output = document.querySelector('#divResult');
+	
+			request.open("GET", location.href + `getbooktxt.php?num=${data}`, true);
+
+			request.send();
+
+			request.onreadystatechange = () => {
+				if (request.readyState != 4) return;
+				
+				output.textContent = request.status != 200 
+				?  `---${request.status} ${request.statusText}`
+				:  request.responseText;
+			}
+
+		}
+
+		
+		/*
+		**
+		**	Задание 3. Обработчик кнопки
+		**
+		*/ 
+
+	</script>
+</head>
+<body>
+	<h1>Лабораторная работа 1</h1>
+	<form action="#" onsubmit="return false">
+		<label for="txtNum">Введите номер книги:</label>
+		<input id="txtNum" type="text" />
+		<button onclick="showBook()">Поиск</button>
+	</form>
+	<div id="divResult">&nbsp;</div>
+</body>
+</html>

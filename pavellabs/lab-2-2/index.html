@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<title>Книги по категориям</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Language" content="ru" />
+	<link rel="stylesheet" type="text/css" href="lab-2-2.css" />
+	<script type="text/javascript">
+		// библиотека
+		function getXMR() {
+			return window.XMLHttpRequest ? new XMLHttpRequest() : false;
+		}
+		function putCategories(data) {
+			const arr = data.split('\n').filter( item => !!item );
+
+			document.querySelector('#selCategory').insertAdjacentHTML(
+				'afterBegin',
+				arr.map( (item) => {
+					const option = item.split(':');
+					return `<option value=${option[0]}>${option[1]}</option>`;
+				} ).join('')
+			);
+		}
+		function buildTable(data) {
+			const table = document.querySelector('#tableBooks');
+			table.innerHTML = '';
+			
+			data.filter( item => !!item ).forEach( (item) => {
+				const row = item.split('|');
+				table.insertAdjacentHTML(
+					'beforeEnd',
+					`<tr data-img=${row[2]}><td>${row[0]}<td>${row[1]}<td><tr></tr>` 
+				)
+			} )	
+		} 
+		/*
+		**
+		** Задание 1. Код вставлять сюда
+		**
+		*/
+		function getCategories() {
+			const req = getXMR();
+
+			if (!req) alert('Не удалось установить связь с сервером');
+
+			req.open("GET", location.href + 'getcategories.php', true);
+
+			req.onreadystatechange = () => {
+
+				if(req.readyState !=4) return;
+				if(req.status != 200) {
+					alert('Что-то пошло не так');
+					return;
+				}
+				const data = req.responseText;
+				putCategories(data);
+			}
+
+			req.send();
+		}
+
+		addEventListener('load', getCategories);
+		
+		/*
+		**
+		**	Задание 2. Выборка книг 
+		**
+		*/
+		function showBooks(){
+			const req = getXMR();
+
+			if (!req) alert('Не удалось установить связь с сервером');
+
+			req.open("POST", location.href + 'postbooksbycat.php', true);
+			req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+			req.onreadystatechange = () => {
+
+				if(req.readyState !=4) return;
+				if(req.status != 200) {
+					alert('Что-то пошло не так');
+					return;
+				}
+				const data = req.responseText;
+
+				buildTable(data.split('\n'));
+				
+			}
+			const cat = document.querySelector('#selCategory').value;
+			req.send(`cat=${cat}`);
+		}
+		
+		
+		/*
+		**
+		**	Задание 3. Показ изображений
+		**
+		*/
+		function showImg(e) {
+			const row = e.target.closest('tr');
+			if(row.tagName != 'TR') return;
+			const img = row.dataset.img;
+			document.querySelector('#divBookInfo').firstElementChild.setAttribute('src', '/lab-2-2/images/'+img);
+
+		}
+
+		addEventListener('load', () => {document.querySelector('#tableBooks').addEventListener('click', showImg)});
+		
+
+	</script>
+</head>
+<body>
+	<h1>Книги по категориям</h1>
+	<form action="#" onsubmit="return false">
+		<div>
+			<label for="selCategory">Категория</label>
+			<select id="selCategory"></select>
+			<button onclick="showBooks()">Показать</button>
+		</div>
+		
+		<div id="divBookInfo">
+			<img src="" alt="" />
+		</div>			
+	</form>
+	
+	<table id="tableBooks"></table>
+	
+
+	
+</body>
+</html>
+

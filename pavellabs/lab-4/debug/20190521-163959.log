@@ -1,0 +1,160 @@
+XMLRPC_parse: <p>Received the following raw request:</p><pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;methodCall&gt;
+&lt;methodName&gt;eshop.calculateOrder&lt;/methodName&gt;
+&lt;params&gt;
+&lt;param&gt;
+&lt;value&gt;&lt;string&gt;5000&lt;/string&gt;&lt;/value&gt;
+&lt;/param&gt;
+&lt;param&gt;
+&lt;value&gt;&lt;string&gt;1&lt;/string&gt;&lt;/value&gt;
+&lt;/param&gt;
+&lt;/params&gt;
+&lt;/methodCall&gt;</pre>
+
+XMLRPC_parse: <p>Returning the following parsed request:</p><pre>Array
+(
+    [methodCall] =&gt; Array
+        (
+            [methodName] =&gt; eshop.calculateOrder
+            [params] =&gt; Array
+                (
+                    [param] =&gt; Array
+                        (
+                            [0] =&gt; Array
+                                (
+                                    [value] =&gt; Array
+                                        (
+                                            [string] =&gt; 5000
+                                        )
+
+                                )
+
+                            [1] =&gt; Array
+                                (
+                                    [value] =&gt; Array
+                                        (
+                                            [string] =&gt; 1
+                                        )
+
+                                )
+
+                        )
+
+                )
+
+        )
+
+)
+</pre>
+
+XMLRPC_response: <p>Received the following data to return:</p>
+
+<pre>Array
+(
+    [struct] =&gt; Array
+        (
+            [member] =&gt; Array
+                (
+                    [0] =&gt; Array
+                        (
+                            [name] =&gt; Стоимость заказа
+                            [value] =&gt; Array
+                                (
+                                    [double] =&gt; 5000
+                                )
+
+                        )
+
+                    [1] =&gt; Array
+                        (
+                            [name] =&gt; Доставка курьером
+                            [value] =&gt; Array
+                                (
+                                    [double] =&gt; 200
+                                )
+
+                        )
+
+                    [2] =&gt; Array
+                        (
+                            [name] =&gt; НДС
+                            [value] =&gt; Array
+                                (
+                                    [double] =&gt; 900
+                                )
+
+                        )
+
+                    [3] =&gt; Array
+                        (
+                            [name] =&gt; Налог с продаж
+                            [value] =&gt; Array
+                                (
+                                    [double] =&gt; 250
+                                )
+
+                        )
+
+                    [4] =&gt; Array
+                        (
+                            [name] =&gt; Обработка заказа
+                            [value] =&gt; Array
+                                (
+                                    [double] =&gt; 500
+                                )
+
+                        )
+
+                )
+
+        )
+
+)
+</pre>
+
+XMLRPC_response: <p>Sent the following response:</p>
+
+<pre>&lt;?xml version=&quot;1.0&quot; ?&gt;
+&lt;methodResponse&gt;
+	&lt;params&gt;
+		&lt;param&gt;
+			&lt;value&gt;
+				&lt;struct&gt;
+					&lt;member&gt;
+						&lt;name&gt;Стоимость заказа&lt;/name&gt;
+						&lt;value&gt;
+							&lt;double&gt;5000&lt;/double&gt;
+						&lt;/value&gt;
+					&lt;/member&gt;
+					&lt;member&gt;
+						&lt;name&gt;Доставка курьером&lt;/name&gt;
+						&lt;value&gt;
+							&lt;double&gt;200&lt;/double&gt;
+						&lt;/value&gt;
+					&lt;/member&gt;
+					&lt;member&gt;
+						&lt;name&gt;НДС&lt;/name&gt;
+						&lt;value&gt;
+							&lt;double&gt;900&lt;/double&gt;
+						&lt;/value&gt;
+					&lt;/member&gt;
+					&lt;member&gt;
+						&lt;name&gt;Налог с продаж&lt;/name&gt;
+						&lt;value&gt;
+							&lt;double&gt;250&lt;/double&gt;
+						&lt;/value&gt;
+					&lt;/member&gt;
+					&lt;member&gt;
+						&lt;name&gt;Обработка заказа&lt;/name&gt;
+						&lt;value&gt;
+							&lt;double&gt;500&lt;/double&gt;
+						&lt;/value&gt;
+					&lt;/member&gt;
+				&lt;/struct&gt;
+			&lt;/value&gt;
+		&lt;/param&gt;
+	&lt;/params&gt;
+&lt;/methodResponse&gt;
+</pre>
+
+

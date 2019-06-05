@@ -1,0 +1,96 @@
+XMLRPC_parse: <p>Received the following raw request:</p><pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;methodCall&gt;
+&lt;methodName&gt;eshop.getDeliveryMethods&lt;/methodName&gt;
+&lt;params&gt;
+&lt;/params&gt;
+&lt;/methodCall&gt;</pre>
+
+XMLRPC_parse: <p>Returning the following parsed request:</p><pre>Array
+(
+    [methodCall] =&gt; Array
+        (
+            [methodName] =&gt; eshop.getDeliveryMethods
+            [params] =&gt; 
+
+        )
+
+)
+</pre>
+
+XMLRPC_response: <p>Received the following data to return:</p>
+
+<pre>Array
+(
+    [array] =&gt; Array
+        (
+            [data] =&gt; Array
+                (
+                    [value] =&gt; Array
+                        (
+                            [0] =&gt; Array
+                                (
+                                    [string] =&gt; Без доставки
+                                )
+
+                            [1] =&gt; Array
+                                (
+                                    [string] =&gt; Доставка курьером
+                                )
+
+                            [2] =&gt; Array
+                                (
+                                    [string] =&gt; Доставка почтой
+                                )
+
+                            [3] =&gt; Array
+                                (
+                                    [string] =&gt; Доставка UPS
+                                )
+
+                            [4] =&gt; Array
+                                (
+                                    [string] =&gt; Доставка Fedex
+                                )
+
+                        )
+
+                )
+
+        )
+
+)
+</pre>
+
+XMLRPC_response: <p>Sent the following response:</p>
+
+<pre>&lt;?xml version=&quot;1.0&quot; ?&gt;
+&lt;methodResponse&gt;
+	&lt;params&gt;
+		&lt;param&gt;
+			&lt;value&gt;
+				&lt;array&gt;
+					&lt;data&gt;
+						&lt;value&gt;
+							&lt;string&gt;Без доставки&lt;/string&gt;
+						&lt;/value&gt;
+						&lt;value&gt;
+							&lt;string&gt;Доставка курьером&lt;/string&gt;
+						&lt;/value&gt;
+						&lt;value&gt;
+							&lt;string&gt;Доставка почтой&lt;/string&gt;
+						&lt;/value&gt;
+						&lt;value&gt;
+							&lt;string&gt;Доставка UPS&lt;/string&gt;
+						&lt;/value&gt;
+						&lt;value&gt;
+							&lt;string&gt;Доставка Fedex&lt;/string&gt;
+						&lt;/value&gt;
+					&lt;/data&gt;
+				&lt;/array&gt;
+			&lt;/value&gt;
+		&lt;/param&gt;
+	&lt;/params&gt;
+&lt;/methodResponse&gt;
+</pre>
+
+
